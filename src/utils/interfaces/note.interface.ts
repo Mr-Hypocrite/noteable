@@ -8,3 +8,5 @@ export interface INote extends INoteGeneratedMeta {
     content: string;
     pinned: boolean;
 }
+
+export interface INoteModifiableContents extends Omit<INote, 'id' | 'created_at'> {}
