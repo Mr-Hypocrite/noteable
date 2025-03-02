@@ -30,7 +30,7 @@
     - You can use **Node.js** and **Express** if you're planning to add a backend for storing notes.
 
 - **Deployment**:
-    - [Vercel](https://vercel.com/) or [Netlify](https://www.netlify.com/) (for easy deployment of the frontend)
+    - [Vercel](https://vercel.com/)
 
 ---
 
@@ -41,7 +41,7 @@ To run **Noteable** locally, follow these steps:
 ### 1. Clone the repository
 
 ```bash
-git clone https://github.com/yourusername/noteable.git
+git clone https://github.com/Mr-Hypocrite/noteable.git
 cd noteable
 ```
 
