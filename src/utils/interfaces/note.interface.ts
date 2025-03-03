@@ -4,8 +4,8 @@ export interface INoteGeneratedMeta {
 }
 
 export interface INote extends INoteGeneratedMeta {
-    title: string;
-    content: string;
+    noteTitle: string;
+    noteContent: string;
     pinned: boolean;
 }
 
