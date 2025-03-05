@@ -12,7 +12,7 @@ export const PinNote: FC<PinNoteProps> = ({ noteId, pinned = false, ...props }) 
     return (
         <Tooltip.Root>
             <Tooltip.Trigger asChild>
-                <IconButton {...props}>{pinned ? <PinOffIcon /> : <PinIcon />}</IconButton>;
+                <IconButton {...props}>{pinned ? <PinOffIcon /> : <PinIcon />}</IconButton>
             </Tooltip.Trigger>
             <Tooltip.Positioner>
                 <Tooltip.Content>pin Note</Tooltip.Content>
