@@ -10,8 +10,8 @@ export const storeActions = (set: INoteStoreSetter): INoteActions => {
                     id: noteId,
                     created_at: new Date(),
                     pinned: note.pinned ?? false,
-                    title: note.title ?? '',
-                    content: note.content ?? ''
+                    noteTitle: note.noteTitle ?? '',
+                    noteContent: note.noteContent ?? ''
                 };
             }),
         editNote: (id, note) =>
@@ -25,9 +25,9 @@ export const storeActions = (set: INoteStoreSetter): INoteActions => {
             set(({ notes }) => {
                 delete notes[id];
             }),
-        pinNote: (id) =>
+        togglePinNote: (id) =>
             set(({ notes }) => {
-                notes[id].pinned = true;
+                notes[id].pinned = !notes[id].pinned;
             }),
         deleteNotes: (ids) => set(({ notes }) => {}),
         pinNotes: (ids) => set(({ notes }) => {})

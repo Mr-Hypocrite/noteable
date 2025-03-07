@@ -6,7 +6,7 @@ export interface INoteActions {
     editNote: (id: string, note: Partial<INoteModifiableContents>) => void;
     deleteNote: (id: string) => void;
     deleteNotes: (ids: string[]) => void;
-    pinNote: (id: string) => void;
+    togglePinNote: (id: string) => void;
     pinNotes: (ids: string[]) => void;
 }
 
