@@ -1,5 +1,5 @@
 import { CreateNote, Header, Text } from '@/components';
-import { NotesGrid } from '@/components/ui';
+import { NotesGrid, ThemeMode } from '@/components/ui';
 import { useGetNotes } from '@/stores';
 import { FC } from 'react';
 import { Flex } from 'styled-system/jsx';
@@ -36,7 +36,17 @@ export const Home: FC<HomeProps> = () => {
             ) : (
                 <InitContent />
             )}
-            <CreateNote pos={'fixed'} right={'6'} bottom={'6'} />
+            <Flex
+                direction={'column'}
+                gap={'4'}
+                pos={'fixed'}
+                right={'6'}
+                bottom={'6'}
+                zIndex={'sticky'}
+            >
+                <ThemeMode />
+                <CreateNote />
+            </Flex>
         </>
     );
 };
