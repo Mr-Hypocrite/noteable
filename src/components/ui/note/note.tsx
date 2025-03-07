@@ -37,8 +37,8 @@ export const Note: FC<NoteProps> = ({ id, created_at, pinned, noteTitle, noteCon
 };
 
 const noteStyles: FlexProps = {
-    bgColor: { base: 'colorPalette.default', _hover: 'colorPalette.emphasized' },
-    color: 'colorPalette.fg',
+    bgColor: { base: 'emerald.3', _hover: 'emerald.4' },
+    color: { base: 'fg.default' },
     gap: '1',
     transition: 'background',
     transitionDuration: 'normal',
