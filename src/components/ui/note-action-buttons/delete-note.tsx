@@ -16,7 +16,7 @@ export const DeleteNote: FC<DeleteNoteProps> = ({ noteId, ...props }) => {
                 </IconButton>
             </Tooltip.Trigger>
             <Tooltip.Positioner>
-                <Tooltip.Content>delete Note</Tooltip.Content>
+                <Tooltip.Content>delete</Tooltip.Content>
             </Tooltip.Positioner>
         </Tooltip.Root>
     );

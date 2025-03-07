@@ -23,7 +23,7 @@ export const CreateNote: FC<CreateNoteProps> = ({ ...props }) => {
                 </IconButton>
             </Tooltip.Trigger>
             <Tooltip.Positioner>
-                <Tooltip.Content>create Note</Tooltip.Content>
+                <Tooltip.Content>create</Tooltip.Content>
             </Tooltip.Positioner>
         </Tooltip.Root>
     );

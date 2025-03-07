@@ -15,7 +15,7 @@ export const PinNote: FC<PinNoteProps> = ({ noteId, pinned = false, ...props }) 
                 <IconButton {...props}>{pinned ? <PinOffIcon /> : <PinIcon />}</IconButton>
             </Tooltip.Trigger>
             <Tooltip.Positioner>
-                <Tooltip.Content>pin Note</Tooltip.Content>
+                <Tooltip.Content>pin</Tooltip.Content>
             </Tooltip.Positioner>
         </Tooltip.Root>
     );
