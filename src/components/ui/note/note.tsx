@@ -52,6 +52,7 @@ const noteStyles: FlexProps = {
 
 const noteActionBtnCommonStyles: IconButtonProps = {
     visibility: 'hidden',
+    size: { base: 'sm', md: 'md' },
     _groupHover: {
         visibility: 'visible'
     },

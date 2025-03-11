@@ -23,7 +23,7 @@ export const ThemeMode: FC<ThemeModeProps> = () => {
         setCurrentTheme(currentTheme === 'light' ? 'dark' : 'light');
     };
     return (
-        <IconButton colorPalette={'emerald'} onClick={toggleTheme}>
+        <IconButton size={{ base: 'sm', md: 'md' }} colorPalette={'emerald'} onClick={toggleTheme}>
             {currentTheme === 'dark' ? <SunIcon /> : <MoonIcon />}
         </IconButton>
     );
