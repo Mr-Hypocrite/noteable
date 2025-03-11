@@ -5,16 +5,55 @@
         <link rel="icon" type="image/svg+xml" href="/vite.svg" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>noteable | capture, organize, and remember – your thoughts, your way.</title>
         <meta name="author" content="Mr. Hypocrite" />
         <meta
             name="description"
-            content="Noteable is a minimalistic web app for creating, managing, and organizing notes. Built with React, TypeScript, and Park-UI."
+            content="noteable is a minimalistic web app for creating, managing, and organizing notes. built with react, typescript, and park-ui."
         />
         <meta
             name="keywords"
             content="noteable, notes, productivity, web app, react, TypeScript, park-ui, minimalist, notes app"
         />
-        <title>noteable | capture, organize, and remember – your thoughts, your way.</title>
+        <!-- OG meta tags -->
+        <meta property="og:type" content="website" />
+        <meta
+            property="og:title"
+            content="noteable | capture, organize, and remember – your thoughts, your way."
+        />
+        <meta
+            property="og:description"
+            content="noteable is a simple, user-friendly web app for creating, managing, and organizing notes. it features tagging, dark mode, and a responsive design."
+        />
+        <meta
+            property="og:image"
+            content="https://noteable-app.vercel.app/meta/noteable_og_image.png"
+        />
+        <meta property="og:url" content="https://noteable-app.vercel.app" />
+        <meta property="og:site_name" content="noteable" />
+        <meta property="og:locale" content="en_US" />
+        <!-- OG meta tags -->
+
+        <!-- Structured Data JSON-LD -->
+        <script type="application/ld+json">
+            {
+                "@context": "https://schema.org",
+                "@type": "WebApplication",
+                "name": "noteable",
+                "url": "https://noteable-app.vercel.app",
+                "description": "noteable is a simple, user-friendly web app for creating, managing, and organizing notes, with features like tagging, dark mode, and responsive design.",
+                "author": {
+                    "@type": "Person",
+                    "name": "Mr. Hypocrite"
+                },
+                //"logo": "https://yourwebsite.com/path/to/logo.png", need to make one still
+                "image": "https://noteable-app.vercel.app/meta/noteable_og_image.png",
+                "operatingSystem": "Web",
+                "applicationCategory": "Productivity",
+                "additionalType": "https://schema.org/SoftwareApplication",
+                "sameAs": ["https://github.com/Mr-Hypocrite/noteable"]
+            }
+        </script>
     </head>
     <body class="dark">
         <div id="root"></div>
