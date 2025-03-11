@@ -48,13 +48,13 @@ export const Note: FC<NoteProps> = ({ id, pinned, noteTitle, noteContent }) => {
                 onClick={() => togglePinNote(id)}
                 pinned={pinned}
                 noteId={id}
-                top={'-2'}
+                top={{ base: '0', md: '-2' }}
             />
             <DeleteNote
                 {...noteActionBtnCommonStyles}
                 onClick={() => deleteNote(id)}
                 noteId={id}
-                bottom={'-2'}
+                bottom={{ base: '0', md: '-2' }}
             />
         </Flex>
     );
@@ -64,6 +64,7 @@ const noteStyles: FlexProps = {
     bgColor: { base: 'emerald.3', _hover: 'emerald.4' },
     color: { base: 'fg.default' },
     gap: '1',
+    m: '2',
     transition: 'background',
     transitionDuration: 'normal',
     transitionTimingFunction: 'ease-in-out',
@@ -82,5 +83,5 @@ const noteActionBtnCommonStyles: IconButtonProps = {
     },
     colorPalette: 'emerald',
     position: 'absolute',
-    right: '-2'
+    right: { base: '0', md: '-2' }
 };
