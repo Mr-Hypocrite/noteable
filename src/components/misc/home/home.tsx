@@ -17,7 +17,7 @@ export const Home: FC<HomeProps> = () => {
                 <>
                     <Header />
                     {pinnedNotes.length > 0 ? (
-                        <Flex w={'full'} direction={'column'} gap={'4'} mb={'8'}>
+                        <Flex w={'full'} direction={'column'} gap={'2'} mb={'8'}>
                             <Text as={'h3'} fontWeight={'light'} size={'md'}>
                                 pinned notes:
                             </Text>
@@ -25,7 +25,7 @@ export const Home: FC<HomeProps> = () => {
                         </Flex>
                     ) : null}
                     {notes.length > 0 ? (
-                        <Flex w={'full'} direction={'column'} gap={'4'} mb={'8'}>
+                        <Flex w={'full'} direction={'column'} gap={'2'} mb={'8'}>
                             <Text as={'h3'} fontWeight={'light'} size={'md'}>
                                 notes:
                             </Text>
@@ -37,6 +37,7 @@ export const Home: FC<HomeProps> = () => {
                 <InitContent />
             )}
             <Flex
+                alignItems={'end'}
                 direction={'column'}
                 gap={'4'}
                 pos={'fixed'}
