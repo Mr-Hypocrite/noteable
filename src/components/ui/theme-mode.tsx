@@ -11,12 +11,14 @@ const setTheme = (theme: 'light' | 'dark') => {
 };
 
 export const ThemeMode: FC<ThemeModeProps> = () => {
+    const existingTheme = localStorage.getItem('noteable-current-theme');
     const [currentTheme, setCurrentTheme] = useState<'light' | 'dark'>(
-        document.body.classList.contains('dark') ? 'dark' : 'light'
+        existingTheme === 'light' || existingTheme === 'dark' ? existingTheme : 'dark'
     );
 
     useEffect(() => {
         setTheme(currentTheme);
+        localStorage.setItem('noteable-current-theme', currentTheme);
     }, [currentTheme]);
 
     const toggleTheme = () => {
