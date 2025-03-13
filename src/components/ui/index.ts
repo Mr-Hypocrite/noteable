@@ -1,4 +1,5 @@
 export * from './button';
+export * from './desktop-action-bar';
 export * from './editable';
 export * from './header';
 export * from './icon';
