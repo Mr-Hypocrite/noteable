@@ -69,6 +69,7 @@ const noteStyles: FlexProps = {
     borderRadius: 'md',
     direction: 'column',
     minH: 'sm',
+    maxH: 'sm',
     p: '4',
     position: 'relative'
 };

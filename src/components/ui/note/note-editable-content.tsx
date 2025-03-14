@@ -2,6 +2,7 @@ import Placeholder from '@tiptap/extension-placeholder';
 import { EditorContent, useEditor } from '@tiptap/react';
 import StarterKit from '@tiptap/starter-kit';
 import { FC } from 'react';
+import { css } from 'styled-system/css';
 
 const extensions = [
     StarterKit,
@@ -12,10 +13,11 @@ const extensions = [
 
 export interface EditableContentProps {
     noteContent: string;
+    ref: any;
     onChange: (content: string) => void;
 }
 
-export const EditableContent: FC<EditableContentProps> = ({ noteContent, onChange }) => {
+export const EditableContent: FC<EditableContentProps> = ({ noteContent, ref, onChange }) => {
     const editor = useEditor({
         extensions,
         content: noteContent,
@@ -26,7 +28,16 @@ export const EditableContent: FC<EditableContentProps> = ({ noteContent, onChang
 
     return (
         <>
-            <EditorContent editor={editor} placeholder="content" defaultValue={'content'} />
+            <EditorContent
+                ref={ref}
+                className={css({
+                    overflowY: 'auto',
+                    scrollbar: 'hidden'
+                })}
+                editor={editor}
+                placeholder="content"
+                defaultValue={'content'}
+            />
             {/*
                 <EditorToolbar editor={editor} />
             */}
