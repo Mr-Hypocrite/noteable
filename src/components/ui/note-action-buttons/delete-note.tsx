@@ -3,11 +3,9 @@ import { FC } from 'react';
 import { IconButton, IconButtonProps } from '../icon-button';
 import { Tooltip } from '../tooltip';
 
-export interface DeleteNoteProps extends IconButtonProps {
-    noteId: string;
-}
+export interface DeleteNoteProps extends IconButtonProps {}
 
-export const DeleteNote: FC<DeleteNoteProps> = ({ noteId, ...props }) => {
+export const DeleteNote: FC<DeleteNoteProps> = ({ ...props }) => {
     return (
         <Tooltip.Root>
             <Tooltip.Trigger asChild>

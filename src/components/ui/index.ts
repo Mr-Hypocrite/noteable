@@ -1,4 +1,7 @@
 export * from './button';
+export * from './confirmation-dialog';
+export * from './desktop-action-bar';
+export * from './dialog';
 export * from './editable';
 export * from './header';
 export * from './icon';
