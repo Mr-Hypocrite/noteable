@@ -1,4 +1,5 @@
 export * from './button';
+export * from './confirmation-dialog';
 export * from './desktop-action-bar';
 export * from './dialog';
 export * from './editable';
@@ -11,4 +12,3 @@ export * from './spinner';
 export * from './text';
 export * from './theme-mode';
 export * from './tooltip';
-
