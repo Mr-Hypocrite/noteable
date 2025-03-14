@@ -7,6 +7,7 @@ import { IconButtonProps } from '../icon-button';
 import { DeleteNote, PinNote } from '../note-action-buttons';
 import { EditableContent } from './note-editable-content';
 import { NoteEditableTitle } from './note-editable-title';
+import { DeleteNoteConfirmation } from '../confirmation-dialog';
 
 export interface NoteProps extends INote {}
 
@@ -50,12 +51,9 @@ export const Note: FC<NoteProps> = ({ id, pinned, noteTitle, noteContent }) => {
                 noteId={id}
                 top={{ base: '0', md: '-2' }}
             />
-            <DeleteNote
-                {...noteActionBtnCommonStyles}
-                onClick={() => deleteNote(id)}
-                noteId={id}
-                bottom={{ base: '0', md: '-2' }}
-            />
+            <DeleteNoteConfirmation noteId={id}>
+                <DeleteNote {...noteActionBtnCommonStyles} bottom={{ base: '0', md: '-2' }} />
+            </DeleteNoteConfirmation>
         </Flex>
     );
 };
