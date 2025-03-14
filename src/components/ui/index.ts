@@ -1,5 +1,6 @@
 export * from './button';
 export * from './desktop-action-bar';
+export * from './dialog';
 export * from './editable';
 export * from './header';
 export * from './icon';
@@ -10,3 +11,4 @@ export * from './spinner';
 export * from './text';
 export * from './theme-mode';
 export * from './tooltip';
+
