@@ -12,7 +12,7 @@ import { DeleteNoteConfirmation } from '../confirmation-dialog';
 export interface NoteProps extends INote {}
 
 export const Note: FC<NoteProps> = ({ id, pinned, noteTitle, noteContent }) => {
-    const { togglePinNote, deleteNote, editNote } = useStoreActions();
+    const { togglePinNote, editNote } = useStoreActions();
     const [localNoteTitle, setLocalNoteTitle] = useState(noteTitle);
     const [localNoteContent, setLocalNoteContent] = useState(noteContent);
     const debouncedEditNote = useCallback(
