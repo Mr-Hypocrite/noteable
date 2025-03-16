@@ -1,14 +1,17 @@
 import Placeholder from '@tiptap/extension-placeholder';
+import Underline from '@tiptap/extension-underline';
 import { EditorContent, useEditor } from '@tiptap/react';
 import StarterKit from '@tiptap/starter-kit';
 import { FC } from 'react';
 import { css } from 'styled-system/css';
+import { EditorToolbar } from './editor-toolbar';
 
 const extensions = [
     StarterKit,
     Placeholder.configure({
         placeholder: 'content'
-    })
+    }),
+    Underline
 ];
 
 export interface EditableContentProps {
@@ -39,9 +42,7 @@ export const EditableContent: FC<EditableContentProps> = ({ noteContent, onChang
                 placeholder="content"
                 defaultValue={'content'}
             />
-            {/*
-                <EditorToolbar editor={editor} />
-            */}
+            <EditorToolbar editor={editor} />
         </>
     );
 };

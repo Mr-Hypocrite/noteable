@@ -1,8 +1,8 @@
 import { Editor } from '@tiptap/react';
-import { BoldIcon, ItalicIcon } from 'lucide-react';
+import { BoldIcon, ItalicIcon, StrikethroughIcon, UnderlineIcon } from 'lucide-react';
 import { FC } from 'react';
 import { Flex, FlexProps } from 'styled-system/jsx';
-import { IconButton } from '../icon-button';
+import { IconButton, IconButtonProps } from '../icon-button';
 
 export interface EditorToolbarProps {
     editor: Editor | null;
@@ -11,20 +11,48 @@ export interface EditorToolbarProps {
 export const EditorToolbar: FC<EditorToolbarProps> = ({ editor }) => {
     return (
         <Flex {...editorToolbarContainerStyles}>
-            <IconButton size={'xs'} onClick={() => editor?.chain()?.focus()?.toggleBold().run()}>
+            <IconButton
+                className={`${editor?.isActive('bold') ? 'active' : ''}`}
+                onClick={() => editor?.chain()?.focus()?.toggleBold().run()}
+                {...commonIconButtonStyles}
+            >
                 <BoldIcon />
             </IconButton>
-            <IconButton size={'xs'} onClick={() => editor?.chain()?.focus()?.toggleItalic().run()}>
+            <IconButton
+                className={`${editor?.isActive('italic') ? 'active' : ''}`}
+                onClick={() => editor?.chain()?.focus()?.toggleItalic().run()}
+                {...commonIconButtonStyles}
+            >
                 <ItalicIcon />
+            </IconButton>
+            <IconButton
+                className={`${editor?.isActive('strike') ? 'active' : ''}`}
+                onClick={() => editor?.chain()?.focus()?.toggleStrike().run()}
+                {...commonIconButtonStyles}
+            >
+                <StrikethroughIcon />
+            </IconButton>
+            <IconButton
+                className={`${editor?.isActive('underline') ? 'active' : ''}`}
+                onClick={() => editor?.chain()?.focus()?.toggleUnderline().run()}
+                {...commonIconButtonStyles}
+            >
+                <UnderlineIcon />
             </IconButton>
         </Flex>
     );
 };
 
 const editorToolbarContainerStyles: FlexProps = {
-    bottom: '4',
     flexDir: 'row',
+    flexShrink: 0,
     gap: '1',
-    overflowX: 'auto',
-    pos: 'absolute'
+    overflowX: 'auto'
+};
+
+const commonIconButtonStyles: IconButtonProps = {
+    size: 'xs',
+    '&.active': {
+        backgroundColor: 'colorPalette.emphasized'
+    }
 };
