@@ -62,7 +62,6 @@ const noteStyles: FlexProps = {
     bgColor: { base: 'emerald.3', _hover: 'emerald.4' },
     color: { base: 'fg.default' },
     gap: '1',
-    m: '2',
     transition: 'background',
     transitionDuration: 'normal',
     transitionTimingFunction: 'ease-in-out',

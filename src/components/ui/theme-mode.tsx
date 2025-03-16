@@ -1,8 +1,8 @@
 import { MoonIcon, SunIcon } from 'lucide-react';
 import { FC, useEffect, useState } from 'react';
-import { IconButton } from './icon-button';
+import { IconButton, IconButtonProps } from './icon-button';
 
-export interface ThemeModeProps {}
+export interface ThemeModeProps extends IconButtonProps {}
 
 const setTheme = (theme: 'light' | 'dark') => {
     const oppositeTheme = theme === 'light' ? 'dark' : 'light';
@@ -10,7 +10,7 @@ const setTheme = (theme: 'light' | 'dark') => {
     document.body.classList.add(theme);
 };
 
-export const ThemeMode: FC<ThemeModeProps> = () => {
+export const ThemeMode: FC<ThemeModeProps> = ({ ...props }) => {
     const existingTheme = localStorage.getItem('noteable-current-theme');
     const [currentTheme, setCurrentTheme] = useState<'light' | 'dark'>(
         existingTheme === 'light' || existingTheme === 'dark' ? existingTheme : 'dark'
@@ -25,7 +25,12 @@ export const ThemeMode: FC<ThemeModeProps> = () => {
         setCurrentTheme(currentTheme === 'light' ? 'dark' : 'light');
     };
     return (
-        <IconButton size={{ base: 'sm', md: 'md' }} colorPalette={'emerald'} onClick={toggleTheme}>
+        <IconButton
+            size={{ base: 'sm', md: 'md' }}
+            colorPalette={'emerald'}
+            onClick={toggleTheme}
+            {...props}
+        >
             {currentTheme === 'dark' ? <SunIcon /> : <MoonIcon />}
         </IconButton>
     );
