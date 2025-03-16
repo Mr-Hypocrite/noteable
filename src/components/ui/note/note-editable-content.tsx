@@ -30,7 +30,10 @@ export const EditableContent: FC<EditableContentProps> = ({ noteContent, onChang
             <EditorContent
                 className={css({
                     overflowY: 'auto',
-                    scrollbar: 'hidden'
+                    scrollbar: 'hidden',
+                    flex: 1,
+                    display: 'flex',
+                    flexDirection: 'column'
                 })}
                 editor={editor}
                 placeholder="content"
