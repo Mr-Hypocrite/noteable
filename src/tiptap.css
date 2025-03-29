@@ -93,7 +93,7 @@
 }
 
 .tiptap blockquote {
-    border-left: 3px solid var(--gray-3);
+    border-left: 2px solid var(--colors-color-palette-light-6);
     margin: 1.5rem 0;
     padding-left: 1rem;
 }

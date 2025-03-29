@@ -33,6 +33,26 @@ export default defineConfig({
             semanticTokens: {}
         }
     },
+    utilities: {
+        extend: {
+            customScrollBar: {
+                className: 'custom-scroll-bar',
+                transform: () => ({
+                    '&::-webkit-scrollbar': {
+                        width: '0.5rem',
+                        height: '0.5rem'
+                    },
+                    '&::-webkit-scrollbar-track': {
+                        backgroundColor: 'rgba(0,0,0, .3)'
+                    },
+                    '&::-webkit-scrollbar-thumb': {
+                        backgroundColor: 'var(--colors-emerald-12)',
+                        borderRadius: 'var(--radii-xs)'
+                    }
+                })
+            }
+        }
+    },
 
     // The output directory for your css system
     outdir: 'styled-system',
