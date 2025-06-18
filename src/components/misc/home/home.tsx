@@ -1,6 +1,6 @@
 import { Header, Text } from '@/components';
 import { DesktopActionBar, NotesGrid } from '@/components';
-import { useGetNotes } from '@/stores';
+import { useGetNotes, useGetSelectedNotes } from '@/stores';
 import { FC } from 'react';
 import { Flex } from 'styled-system/jsx';
 import { InitContent } from './init-content';
@@ -8,12 +8,16 @@ import { InitContent } from './init-content';
 export interface HomeProps {}
 
 export const Home: FC<HomeProps> = () => {
-    const notes = useGetNotes();
-    const pinnedNotes = useGetNotes({ pinned: true });
+    const allNotes = useGetNotes();
+    const selectedNotes = useGetSelectedNotes();
+    const pinnedNotes = allNotes.filter(({ pinned }) => pinned);
+    const notes = allNotes.filter(({ pinned }) => !pinned);
+
+    console.log(selectedNotes);
 
     return (
         <>
-            {notes.length > 0 || pinnedNotes.length > 0 ? (
+            {allNotes.length > 0 ? (
                 <>
                     <Header />
                     {pinnedNotes.length > 0 ? (
@@ -26,7 +30,7 @@ export const Home: FC<HomeProps> = () => {
                             >
                                 pinned notes
                             </Text>
-                            <NotesGrid notes={pinnedNotes} />
+                            <NotesGrid notes={pinnedNotes} selectedNotes={selectedNotes} />
                         </Flex>
                     ) : null}
                     {notes.length > 0 ? (
@@ -39,7 +43,7 @@ export const Home: FC<HomeProps> = () => {
                             >
                                 notes
                             </Text>
-                            <NotesGrid notes={notes} />
+                            <NotesGrid notes={notes} selectedNotes={selectedNotes} />
                         </Flex>
                     ) : null}
                 </>

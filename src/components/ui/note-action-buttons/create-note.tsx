@@ -1,4 +1,4 @@
-import { useStoreActions } from '@/stores';
+import { useNoteStoreActions } from '@/stores';
 import { INoteModifiableContents } from '@/utils';
 import { PlusIcon } from 'lucide-react';
 import { FC } from 'react';
@@ -14,7 +14,7 @@ const newNote: Partial<INoteModifiableContents> = {
 };
 
 export const CreateNote: FC<CreateNoteProps> = ({ ...props }) => {
-    const { createNote } = useStoreActions();
+    const { createNote } = useNoteStoreActions();
     return (
         <Tooltip.Root>
             <Tooltip.Trigger asChild>

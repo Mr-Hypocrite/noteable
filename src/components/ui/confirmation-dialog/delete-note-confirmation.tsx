@@ -1,4 +1,4 @@
-import { useStoreActions } from '@/stores';
+import { useNoteStoreActions } from '@/stores';
 import { DialogRootProps } from '@ark-ui/react';
 import { XIcon } from 'lucide-react';
 import { FC } from 'react';
@@ -16,7 +16,7 @@ export const DeleteNoteConfirmation: FC<DeleteNoteConfirmationProps> = ({
     children,
     ...props
 }) => {
-    const { deleteNote } = useStoreActions();
+    const { deleteNote } = useNoteStoreActions();
 
     return (
         <Dialog.Root {...props}>
