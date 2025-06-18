@@ -1,3 +1,4 @@
 export * from './setters';
-export * from './use-store-actions';
 export * from './use-get-notes';
+export * from './use-get-selected-notes';
+export * from './use-store-actions';
