@@ -1,9 +1,9 @@
 import { devtools, persist } from 'zustand/middleware';
 import { shallow } from 'zustand/shallow';
 import { createWithEqualityFn } from 'zustand/traditional';
-import { INoteStore } from './store.interface';
+import { IAppStore, INoteStore } from './store.interface';
 
-export const useAppStore = createWithEqualityFn<INoteStore>()(
+export const useNoteStore = createWithEqualityFn<INoteStore>()(
     devtools(
         persist(
             (_set) => ({
@@ -13,6 +13,17 @@ export const useAppStore = createWithEqualityFn<INoteStore>()(
                 name: 'noteable-notes-store'
             }
         ),
+        { name: 'noteable-notes-store' }
+    ),
+    shallow
+);
+
+export const useAppStore = createWithEqualityFn<IAppStore>()(
+    devtools(
+        (_set) => ({
+            selectedNotes: []
+        }),
+
         { name: 'noteable-app-store' }
     ),
     shallow
