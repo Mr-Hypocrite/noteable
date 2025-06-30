@@ -13,8 +13,6 @@ export const Home: FC<HomeProps> = () => {
     const pinnedNotes = allNotes.filter(({ pinned }) => pinned);
     const notes = allNotes.filter(({ pinned }) => !pinned);
 
-    console.log(selectedNotes);
-
     return (
         <>
             {allNotes.length > 0 ? (
