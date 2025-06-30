@@ -11,14 +11,10 @@ export interface NotesGridProps {
 export const NotesGrid: FC<NotesGridProps> = ({ notes, selectedNotes }) => {
     return (
         <Grid
-            gridTemplateColumns={'repeat(auto-fill, minmax(240px, 1fr))'}
-            gridGap={'4'}
-            pt={'2'}
-            pb={'4'}
-            overflowY={'auto'}
+            gridTemplateColumns={'repeat(auto-fill, minmax(270px, 1fr))'}
+            gridGap={'12'}
+            py={'4'}
             width={'full'}
-            scrollbar={'hidden'}
-            height={'full'}
             alignItems={'start'}
         >
             {notes.map((note, _index) => (
