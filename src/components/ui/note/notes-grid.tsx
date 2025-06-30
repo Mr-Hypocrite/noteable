@@ -5,9 +5,10 @@ import { Note } from './note';
 
 export interface NotesGridProps {
     notes: INote[];
+    selectedNotes?: INote['id'][];
 }
 
-export const NotesGrid: FC<NotesGridProps> = ({ notes }) => {
+export const NotesGrid: FC<NotesGridProps> = ({ notes, selectedNotes }) => {
     return (
         <Grid
             gridTemplateColumns={'repeat(auto-fill, minmax(240px, 1fr))'}
@@ -21,7 +22,11 @@ export const NotesGrid: FC<NotesGridProps> = ({ notes }) => {
             alignItems={'start'}
         >
             {notes.map((note, _index) => (
-                <Note key={note.id} {...note} />
+                <Note
+                    key={note.id}
+                    selected={!!selectedNotes?.find((id) => id === note.id) || false}
+                    {...note}
+                />
             ))}
         </Grid>
     );

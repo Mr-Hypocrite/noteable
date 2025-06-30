@@ -10,6 +10,9 @@ import { NoteEditableTitle } from './note-editable-title';
 import { DeleteNoteConfirmation } from '../confirmation-dialog';
 
 export interface NoteProps extends INote {}
+export interface NoteProps extends INote {
+    selected: boolean;
+}
 
 export const Note: FC<NoteProps> = ({ id, pinned, noteTitle, noteContent }) => {
     const { togglePinNote, editNote } = useStoreActions();
