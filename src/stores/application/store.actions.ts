@@ -50,6 +50,15 @@ export const appStoreActions = (set: IAppStoreSetter): IAppActions => {
                 return { selectedNotes: Array.from(selectedNotesSet) };
             });
         },
+        deselectNotes(noteIds) {
+            set(({ selectedNotes }) => {
+                const selectedNotesSet = new Set(selectedNotes);
+                noteIds.forEach((noteId) => {
+                    selectedNotesSet.delete(noteId);
+                });
+                return { selectedNotes: Array.from(selectedNotesSet) };
+            });
+        },
         toggleSelectedNotes(noteIds) {
             set(({ selectedNotes }) => {
                 const selectedNotesSet = new Set(selectedNotes);

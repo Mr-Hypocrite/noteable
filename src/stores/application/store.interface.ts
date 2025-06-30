@@ -19,8 +19,9 @@ export interface INoteStore extends INoteState {}
 export type INoteStoreSetter = (updater: (draft: Draft<INoteStore>) => void) => void;
 
 export interface IAppActions {
-    setSelectedNotes: (notes: string[]) => void;
-    toggleSelectedNotes: (notes: string[]) => void;
+    setSelectedNotes: (noteIds: string[]) => void;
+    deselectNotes: (noteIds: string[]) => void;
+    toggleSelectedNotes: (noteIds: string[]) => void;
 }
 
 export interface IAppState {
