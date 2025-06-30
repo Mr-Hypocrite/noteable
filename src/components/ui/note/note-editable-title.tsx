@@ -19,8 +19,7 @@ export const NoteEditableTitle: FC<NoteEditableTitleProps> = ({ inputProps, ...p
 };
 
 const titleStyles: HTMLStyledProps<'input'> = {
-    fontWeight: 'thin',
-    fontSize: { base: 'lg' },
+    textStyle: 'noteTitle',
     _focus: {
         ring: 'none'
     }
