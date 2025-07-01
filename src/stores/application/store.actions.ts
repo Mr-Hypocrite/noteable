@@ -35,7 +35,12 @@ export const noteStoreActions = (set: INoteStoreSetter): INoteActions => {
                     delete notes[id];
                 });
             }),
-        pinNotes: (_ids) => set(({}) => {})
+        pinNotes: (_ids) =>
+            set(({ notes }) => {
+                _ids.forEach((id) => {
+                    notes[id].pinned = true;
+                });
+            })
     };
 };
 
