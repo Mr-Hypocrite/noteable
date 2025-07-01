@@ -67,5 +67,8 @@ const selectBtnStyles = css({
     pointerEvents: 'all',
     top: '4',
     right: '-6',
-    visibility: 'visible'
+    visibility: 'visible',
+    "&[data-state-selected='true']": {
+        bgColor: 'emerald.7'
+    }
 });
