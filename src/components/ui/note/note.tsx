@@ -65,7 +65,7 @@ const noteStyles: FlexProps = {
     transitionTimingFunction: 'ease-in-out',
     borderRadius: 'md',
     direction: 'column',
-    aspectRatio: '2/3',
+    aspectRatio: { base: '1/1.1', sm: '2/3' },
     h: 'auto',
     p: '4',
     position: 'relative'
