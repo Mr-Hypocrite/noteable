@@ -1,9 +1,9 @@
 import { FC } from 'react';
 import { Flex } from 'styled-system/jsx';
 import { Button } from '../button';
-import { CreateNote } from '../note-action-buttons';
 import { Text } from '../text';
 import { ThemeMode } from '../theme-mode';
+import { BulkActionMenuWrapper } from './bulk-action-menu-wrapper';
 
 export interface HeaderProps {}
 
@@ -30,10 +30,7 @@ export const Header: FC<HeaderProps> = () => {
                     </Text>
                 </a>
             </Button>
-            <CreateNote
-                size={{ base: 'xs', lg: 'md' }}
-                visibility={{ base: 'visible', lg: 'hidden' }}
-            />
+            <BulkActionMenuWrapper />
         </Flex>
     );
 };
