@@ -5,7 +5,9 @@ import { FC } from 'react';
 import { IconButton, IconButtonProps } from '../icon-button';
 import { Tooltip } from '../tooltip';
 
-export interface CreateNoteProps extends IconButtonProps, Partial<INoteModifiableContents> {}
+export interface CreateNoteProps extends IconButtonProps, Partial<INoteModifiableContents> {
+    showButtonText?: boolean;
+}
 
 const newNote: Partial<INoteModifiableContents> = {
     noteTitle: '',
@@ -13,7 +15,7 @@ const newNote: Partial<INoteModifiableContents> = {
     pinned: false
 };
 
-export const CreateNote: FC<CreateNoteProps> = ({ ...props }) => {
+export const CreateNote: FC<CreateNoteProps> = ({ showButtonText = false, ...props }) => {
     const { createNote } = useNoteStoreActions();
     return (
         <Tooltip.Root>
@@ -25,6 +27,7 @@ export const CreateNote: FC<CreateNoteProps> = ({ ...props }) => {
                     {...props}
                 >
                     <PlusIcon />
+                    {showButtonText ? 'create' : ''}
                 </IconButton>
             </Tooltip.Trigger>
             <Tooltip.Positioner>

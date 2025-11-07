@@ -48,7 +48,7 @@ export const Home: FC<HomeProps> = () => {
             ) : (
                 <InitContent />
             )}
-            <DesktopActionBar />
+            {allNotes.length > 0 && <DesktopActionBar />}
         </>
     );
 };
