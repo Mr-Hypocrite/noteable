@@ -31,13 +31,7 @@ export const EditableContent: FC<EditableContentProps> = ({ noteContent, onChang
     return (
         <>
             <EditorContent
-                className={css({
-                    overflowY: 'auto',
-                    scrollbar: 'hidden',
-                    flex: 1,
-                    display: 'flex',
-                    flexDirection: 'column'
-                })}
+                className={editorContentStyles}
                 editor={editor}
                 placeholder="content"
                 defaultValue={'content'}
@@ -46,3 +40,12 @@ export const EditableContent: FC<EditableContentProps> = ({ noteContent, onChang
         </>
     );
 };
+
+const editorContentStyles = css({
+    overflowY: 'auto',
+    scrollbar: 'hidden',
+    flex: 1,
+    display: 'flex',
+    flexDirection: 'column',
+    textStyle: 'noteContent'
+});

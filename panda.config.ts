@@ -1,6 +1,6 @@
 import { defineConfig, defineGlobalStyles } from '@pandacss/dev';
 import { createPreset } from '@park-ui/panda-preset';
-import { emerald } from './src/utils';
+import { emerald, textStyles } from './src/utils';
 // @ts-ignore
 import sage from '@park-ui/panda-preset/colors/sage';
 
@@ -31,7 +31,8 @@ export default defineConfig({
         extend: {
             tokens: {},
             semanticTokens: {}
-        }
+        },
+        textStyles
     },
     utilities: {
         extend: {
