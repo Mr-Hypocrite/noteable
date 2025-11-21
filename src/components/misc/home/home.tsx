@@ -1,6 +1,13 @@
-import { Header, Text } from '@/components';
-import { DesktopActionBar, NotesGrid } from '@/components';
-import { useGetNotes, useGetSelectedNotes } from '@/stores';
+import {
+    DeleteNoteConfirmation,
+    DesktopActionBar,
+    Header,
+    NoteEditorDialog,
+    NotesGrid,
+    Text
+} from '@/components';
+import { useNoteStore } from '@/stores';
+import { getAllNotes, getSelectedNotes } from '@/stores/application/selectors';
 import { FC } from 'react';
 import { Flex } from 'styled-system/jsx';
 import { InitContent } from './init-content';
@@ -8,8 +15,8 @@ import { InitContent } from './init-content';
 export interface HomeProps {}
 
 export const Home: FC<HomeProps> = () => {
-    const allNotes = useGetNotes();
-    const selectedNotes = useGetSelectedNotes();
+    const allNotes = Object.values(useNoteStore(getAllNotes));
+    const selectedNotes = useNoteStore(getSelectedNotes);
     const pinnedNotes = allNotes.filter(({ pinned }) => pinned);
     const notes = allNotes.filter(({ pinned }) => !pinned);
 
@@ -44,6 +51,8 @@ export const Home: FC<HomeProps> = () => {
                             <NotesGrid notes={notes} selectedNotes={selectedNotes} />
                         </Flex>
                     ) : null}
+                    <DeleteNoteConfirmation />
+                    <NoteEditorDialog />
                 </>
             ) : (
                 <InitContent />

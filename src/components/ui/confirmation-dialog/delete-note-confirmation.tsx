@@ -1,4 +1,4 @@
-import { useAppStoreActions, useNoteStoreActions } from '@/stores';
+import { getDeleteNoteIds, useNoteStore, useNoteStoreActions } from '@/stores';
 import { DialogRootProps, Portal } from '@ark-ui/react';
 import { XIcon } from 'lucide-react';
 import { FC, useId } from 'react';
@@ -6,48 +6,31 @@ import { Stack } from 'styled-system/jsx';
 import { Button } from '../button';
 import { Dialog } from '../dialog';
 import { IconButton } from '../icon-button';
-import { Tooltip } from '../tooltip';
 
-export interface DeleteNoteConfirmationProps extends DialogRootProps {
-    noteId: string;
-    selected?: boolean;
-}
+export interface DeleteNoteConfirmationProps extends DialogRootProps {}
 
-export const DeleteNoteConfirmation: FC<DeleteNoteConfirmationProps> = ({
-    noteId,
-    selected,
-    children,
-    ...props
-}) => {
+export const DeleteNoteConfirmation: FC<DeleteNoteConfirmationProps> = ({ ...props }) => {
     const trigger = useId();
-    const { deleteNote } = useNoteStoreActions();
-    const { deselectNotes } = useAppStoreActions();
+    const { deleteNotes, deselectNotes, setDeleteNoteIds } = useNoteStoreActions();
+    const deleteNoteIds = useNoteStore(getDeleteNoteIds);
 
     const handleDeleteNote = (noteIds: string[]) => {
         deselectNotes(noteIds);
-        deleteNote(noteIds[0]);
+        setDeleteNoteIds([]);
+        deleteNotes(noteIds);
     };
 
     return (
-        <Dialog.Root ids={{ trigger }} {...props}>
-            <Tooltip.Root ids={{ trigger }}>
-                <Dialog.Trigger asChild>
-                    <Tooltip.Trigger asChild>
-                        <IconButton
-                            size={{ base: 'sm', md: 'md' }}
-                            colorPalette={'emerald'}
-                            {...props}
-                        >
-                            {children}
-                        </IconButton>
-                    </Tooltip.Trigger>
-                </Dialog.Trigger>
-                <Portal>
-                    <Tooltip.Positioner>
-                        <Tooltip.Content>delete</Tooltip.Content>
-                    </Tooltip.Positioner>
-                </Portal>
-            </Tooltip.Root>
+        <Dialog.Root
+            ids={{ trigger }}
+            open={deleteNoteIds.length > 0}
+            onOpenChange={(e) => {
+                if (!e.open) {
+                    setDeleteNoteIds([]);
+                }
+            }}
+            {...props}
+        >
             <Portal>
                 <Dialog.Backdrop />
                 <Dialog.Positioner>
@@ -68,7 +51,7 @@ export const DeleteNoteConfirmation: FC<DeleteNoteConfirmationProps> = ({
                                 <Button
                                     colorPalette={'red'}
                                     flexGrow={1}
-                                    onClick={() => handleDeleteNote([noteId])}
+                                    onClick={() => handleDeleteNote(deleteNoteIds)}
                                 >
                                     yeet
                                 </Button>
