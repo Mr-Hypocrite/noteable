@@ -1,5 +1,5 @@
 import { v4 as uuid } from 'uuid';
-import { IAppActions, IAppStoreSetter, INoteActions, INoteStoreSetter } from './store.interface';
+import { INoteActions, INoteStoreSetter } from './store.interface';
 
 export const noteStoreActions = (set: INoteStoreSetter): INoteActions => {
     return {
@@ -40,12 +40,8 @@ export const noteStoreActions = (set: INoteStoreSetter): INoteActions => {
                 _ids.forEach((id) => {
                     notes[id].pinned = true;
                 });
-            })
-    };
-};
+            }),
 
-export const appStoreActions = (set: IAppStoreSetter): IAppActions => {
-    return {
         setSelectedNotes(noteIds) {
             set(({ selectedNotes }) => {
                 const selectedNotesSet = new Set(selectedNotes);
@@ -76,6 +72,16 @@ export const appStoreActions = (set: IAppStoreSetter): IAppActions => {
                 });
                 return { selectedNotes: Array.from(selectedNotesSet) };
             });
+        },
+        setEditNoteId(noteId) {
+            set(() => ({
+                editNoteId: noteId
+            }));
+        },
+        setDeleteNoteIds(noteIds) {
+            set(() => ({
+                deleteNoteIds: noteIds
+            }));
         }
     };
 };
