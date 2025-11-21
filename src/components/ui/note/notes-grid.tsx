@@ -2,6 +2,8 @@ import { INote } from '@/utils';
 import { FC } from 'react';
 import { Grid } from 'styled-system/jsx';
 import { Note } from './note';
+import { Dialog } from '../dialog';
+import { Text } from '../text';
 
 export interface NotesGridProps {
     notes: INote[];
@@ -15,7 +17,7 @@ export const NotesGrid: FC<NotesGridProps> = ({ notes, selectedNotes }) => {
             gridGap={'12'}
             py={'4'}
             width={'full'}
-            alignItems={'start'}
+            alignItems={'center'}
         >
             {notes.map((note, _index) => (
                 <Note
