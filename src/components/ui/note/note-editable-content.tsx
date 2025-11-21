@@ -2,7 +2,7 @@ import Placeholder from '@tiptap/extension-placeholder';
 import Underline from '@tiptap/extension-underline';
 import { EditorContent, useEditor } from '@tiptap/react';
 import StarterKit from '@tiptap/starter-kit';
-import { FC } from 'react';
+import { FC, useEffect } from 'react';
 import { css } from 'styled-system/css';
 import { EditorToolbar } from './editor-toolbar';
 
@@ -14,19 +14,25 @@ const extensions = [
     Underline
 ];
 
-export interface EditableContentProps {
-    noteContent: string;
-    onChange: (content: string) => void;
-}
+export type EditableContentProps =
+    | { editable: true; noteContent: string | undefined; onChange: (content: string) => void }
+    | { editable: false; noteContent: string | undefined; onChange?: never };
 
-export const EditableContent: FC<EditableContentProps> = ({ noteContent, onChange }) => {
+export const EditableContent: FC<EditableContentProps> = ({ noteContent, editable, onChange }) => {
     const editor = useEditor({
         extensions,
         content: noteContent,
+        editable,
         onUpdate(props) {
-            onChange(props.editor.getHTML());
+            onChange?.(props.editor.getHTML());
         }
     });
+
+    useEffect(() => {
+        if (editor && editor.getHTML() !== noteContent) {
+            editor.commands.setContent(noteContent, false);
+        }
+    }, [noteContent, editor]);
 
     return (
         <>
