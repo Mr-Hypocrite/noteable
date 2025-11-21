@@ -9,7 +9,7 @@ export interface NoteEditableTitleProps extends EditableRootProps {
 
 export const NoteEditableTitle: FC<NoteEditableTitleProps> = ({ inputProps, ...props }) => {
     return (
-        <Editable.Root placeholder={'title'} defaultValue="title" activationMode="click" {...props}>
+        <Editable.Root placeholder={'title'} defaultValue="title" activationMode="focus" {...props}>
             <Editable.Area>
                 <Editable.Input {...titleStyles} {...inputProps} />
                 <Editable.Preview {...titleStyles} />
