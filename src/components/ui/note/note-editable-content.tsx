@@ -1,6 +1,6 @@
 import Placeholder from '@tiptap/extension-placeholder';
 import Underline from '@tiptap/extension-underline';
-import { EditorContent, useEditor } from '@tiptap/react';
+import { Content, EditorContent, useEditor } from '@tiptap/react';
 import StarterKit from '@tiptap/starter-kit';
 import { FC, useEffect } from 'react';
 import { css } from 'styled-system/css';
@@ -15,8 +15,8 @@ const extensions = [
 ];
 
 export type EditableContentProps =
-    | { editable: true; noteContent: string | undefined; onChange: (content: string) => void }
-    | { editable: false; noteContent: string | undefined; onChange?: never };
+    | { editable: true; noteContent: Content; onChange: (content: string) => void }
+    | { editable: false; noteContent: Content; onChange?: never };
 
 export const EditableContent: FC<EditableContentProps> = ({ noteContent, editable, onChange }) => {
     const editor = useEditor({

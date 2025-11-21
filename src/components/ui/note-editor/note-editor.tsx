@@ -1,6 +1,7 @@
 import { getEditNoteId, useNoteStore, useNoteStoreActions } from '@/stores';
 import { INote } from '@/utils';
 import { DialogRootProps, Portal } from '@ark-ui/react';
+import { Content } from '@tiptap/react';
 import debounce from 'debounce';
 import { FC, useCallback, useEffect, useState } from 'react';
 import { Flex } from 'styled-system/jsx';
@@ -20,9 +21,7 @@ export const NoteEditorDialog: FC<NoteEditorDialogProps> = () => {
     const note = useNoteStore(noteSelector(editNoteId));
 
     const [localNoteTitle, setLocalNoteTitle] = useState<string>(note?.noteTitle || '');
-    const [localNoteContent, setLocalNoteContent] = useState<string | undefined>(
-        note?.noteContent || ''
-    );
+    const [localNoteContent, setLocalNoteContent] = useState<Content>(note?.noteContent || '');
 
     const debouncedEditNoteTitle = useCallback(
         debounce((noteId: string, noteTitle: string) => {
@@ -33,7 +32,7 @@ export const NoteEditorDialog: FC<NoteEditorDialogProps> = () => {
         []
     );
     const debouncedEditNoteContent = useCallback(
-        debounce((noteId: string, noteContent: string | undefined) => {
+        debounce((noteId: string, noteContent: Content) => {
             editNote(noteId, {
                 noteContent
             });

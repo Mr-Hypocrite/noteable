@@ -2,8 +2,6 @@ import { INote } from '@/utils';
 import { FC } from 'react';
 import { Grid } from 'styled-system/jsx';
 import { Note } from './note';
-import { Dialog } from '../dialog';
-import { Text } from '../text';
 
 export interface NotesGridProps {
     notes: INote[];
