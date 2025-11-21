@@ -1,10 +1,9 @@
-import { useAppStoreActions, useNoteStoreActions } from '@/stores';
+import { useNoteStoreActions } from '@/stores';
 import { INote } from '@/utils';
 import { CheckIcon, PinIcon, PinOffIcon, Trash2Icon } from 'lucide-react';
 import { FC } from 'react';
 import { css } from 'styled-system/css';
-import { Box, Flex } from 'styled-system/jsx';
-import { DeleteNoteConfirmation } from '../confirmation-dialog';
+import { Flex } from 'styled-system/jsx';
 import { NoteActionBtn } from './note-action-btn';
 
 export interface NoteActionsProps extends Pick<INote, 'pinned' | 'id'> {
@@ -13,45 +12,48 @@ export interface NoteActionsProps extends Pick<INote, 'pinned' | 'id'> {
 }
 
 export const NoteActions: FC<NoteActionsProps> = ({ id, pinned, selected, hoverState }) => {
-    const { togglePinNote } = useNoteStoreActions();
-    const { toggleSelectedNotes } = useAppStoreActions();
+    const { togglePinNote, toggleSelectedNotes, setDeleteNoteIds } = useNoteStoreActions();
 
     return (
-        <Box className={noteActionsContainerStyles}>
+        <>
             {(selected || hoverState) && (
                 <NoteActionBtn
                     data-state-selected={selected}
                     className={selectBtnStyles}
-                    onClick={() => toggleSelectedNotes([id])}
+                    onClick={(e) => {
+                        e.stopPropagation();
+                        toggleSelectedNotes([id]);
+                    }}
                     tooltipContent={<>select</>}
                 >
                     <CheckIcon />
                 </NoteActionBtn>
             )}
-            <Flex className={actionsCollectionStyles}>
-                <NoteActionBtn onClick={() => togglePinNote(id)} tooltipContent={<>pin</>}>
-                    {pinned ? <PinOffIcon /> : <PinIcon />}
-                </NoteActionBtn>
-                <DeleteNoteConfirmation noteId={id}>
-                    <Trash2Icon />
-                </DeleteNoteConfirmation>
-            </Flex>
-        </Box>
+            {hoverState && (
+                <Flex className={actionsCollectionStyles}>
+                    <NoteActionBtn
+                        onClick={(e) => {
+                            e.stopPropagation();
+                            togglePinNote(id);
+                        }}
+                        tooltipContent={<>pin</>}
+                    >
+                        {pinned ? <PinOffIcon /> : <PinIcon />}
+                    </NoteActionBtn>
+                    <NoteActionBtn
+                        onClick={(e) => {
+                            e.stopPropagation();
+                            setDeleteNoteIds([id]);
+                        }}
+                        tooltipContent={<>delete</>}
+                    >
+                        <Trash2Icon />
+                    </NoteActionBtn>
+                </Flex>
+            )}
+        </>
     );
 };
-
-const noteActionsContainerStyles = css({
-    pos: 'absolute',
-    left: '0',
-    top: '0',
-    w: 'full',
-    h: 'full',
-    visibility: 'hidden',
-    pointerEvents: 'none',
-    _groupHover: {
-        visibility: 'visible'
-    }
-});
 
 const actionsCollectionStyles = css({
     flexDir: 'column',

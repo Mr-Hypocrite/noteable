@@ -1,55 +1,37 @@
 import { useNoteStoreActions } from '@/stores';
 import { INote } from '@/utils';
-import debounce from 'debounce';
-import { FC, useCallback, useEffect, useState } from 'react';
+import { FC, useState } from 'react';
 import { Flex, FlexProps } from 'styled-system/jsx';
+import { Text } from '../text';
 import { NoteActions } from './note-actions';
 import { EditableContent } from './note-editable-content';
-import { NoteEditableTitle } from './note-editable-title';
 
 export interface NoteProps extends INote {
     selected: boolean;
 }
 
 export const Note: FC<NoteProps> = ({ id, pinned, noteTitle, noteContent, selected }) => {
-    const { editNote } = useNoteStoreActions();
-    const [localNoteTitle, setLocalNoteTitle] = useState(noteTitle);
-    const [localNoteContent, setLocalNoteContent] = useState(noteContent);
     const [hoverState, setHoverState] = useState(false);
-    const debouncedEditNote = useCallback(
-        debounce((id: string, _noteTitle: string) => editNote(id, { noteTitle: _noteTitle }), 500),
-        [id]
-    );
-    const debouncedEditContent = useCallback(
-        debounce((id: string, _noteContent) => editNote(id, { noteContent: _noteContent }), 500),
-        [id]
-    );
-
-    useEffect(() => {
-        debouncedEditNote(id, localNoteTitle);
-    }, [localNoteTitle]);
-
-    useEffect(() => {
-        debouncedEditContent(id, localNoteContent);
-    }, [localNoteContent]);
+    const { setEditNoteId } = useNoteStoreActions();
 
     return (
         <Flex
             id={id}
             className="group"
+            cursor={'pointer'}
             onMouseOver={() => setHoverState(true)}
             onMouseOut={() => setHoverState(false)}
+            onClick={() => setEditNoteId(id)}
             {...noteStyles}
         >
-            <NoteEditableTitle
-                inputProps={{
-                    onChange: (event) => setLocalNoteTitle(event.target.value)
-                }}
-                value={localNoteTitle}
-            />
+            <Text pointerEvents={'none'} textStyle={'noteTitle'}>
+                {noteTitle || 'title'}
+            </Text>
             <EditableContent
-                noteContent={localNoteContent}
-                onChange={(value) => setLocalNoteContent(value)}
+                noteContent={
+                    noteContent !== '<p></p>' && noteContent !== '' ? noteContent : 'content'
+                }
+                editable={false}
             />
             <NoteActions id={id} pinned={pinned} selected={selected} hoverState={hoverState} />
         </Flex>
@@ -65,7 +47,8 @@ const noteStyles: FlexProps = {
     transitionTimingFunction: 'ease-in-out',
     borderRadius: 'md',
     direction: 'column',
-    aspectRatio: { base: '1/1.1', sm: '2/3' },
+    alignItems: 'start',
+    aspectRatio: { base: '1/1.1', sm: '4/3' },
     h: 'auto',
     p: '4',
     position: 'relative'

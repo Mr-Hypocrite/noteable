@@ -1,4 +1,4 @@
-import { useAppStoreActions, useNoteStoreActions } from '@/stores';
+import { useNoteStoreActions } from '@/stores';
 import { MenuRootProps } from '@ark-ui/react';
 import { ChevronDownIcon, PinIcon, Trash2Icon } from 'lucide-react';
 import { FC } from 'react';
@@ -12,12 +12,11 @@ export interface BulkActionsMenuProps extends MenuRootProps {
 }
 
 export const BulkActionsMenu: FC<BulkActionsMenuProps> = ({ selectedNotes, ...props }) => {
-    const { deleteNotes, pinNotes } = useNoteStoreActions();
-    const { deselectNotes } = useAppStoreActions();
+    const { pinNotes, setDeleteNoteIds, deselectNotes } = useNoteStoreActions();
 
     const handleBulkAction = (action: 'delete' | 'pin') => {
         if (action === 'delete') {
-            deleteNotes(selectedNotes);
+            setDeleteNoteIds(selectedNotes);
         }
         if (action === 'pin') {
             pinNotes(selectedNotes);

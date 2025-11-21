@@ -1,12 +1,12 @@
-import { useAppStore } from '@/stores';
 import { FC } from 'react';
 import { CreateNote } from '../note-action-buttons';
 import { BulkActionsMenu } from './bulk-actions-menu';
+import { getSelectedNotes, useNoteStore } from '@/stores';
 
 export interface BulkActionMenuWrapperProps {}
 
 export const BulkActionMenuWrapper: FC<BulkActionMenuWrapperProps> = () => {
-    const { selectedNotes } = useAppStore();
+    const selectedNotes = useNoteStore(getSelectedNotes);
 
     return selectedNotes.length > 0 ? (
         <BulkActionsMenu selectedNotes={selectedNotes} />
