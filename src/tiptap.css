@@ -105,6 +105,6 @@
 
 .tiptap hr {
     border: none;
-    border-top: 1px solid var(--gray-2);
+    border-top: 1px solid var(--colors-color-palette-light-6);
     margin: 2rem 0;
 }
