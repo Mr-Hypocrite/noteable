@@ -48,7 +48,7 @@ const noteStyles: FlexProps = {
     borderRadius: 'md',
     direction: 'column',
     alignItems: 'start',
-    aspectRatio: { base: '1/1.1', sm: '4/3' },
+    aspectRatio: { base: '4/3' },
     h: 'auto',
     p: '4',
     position: 'relative'
