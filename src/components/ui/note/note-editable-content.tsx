@@ -48,6 +48,7 @@ export const EditableContent: FC<EditableContentProps> = ({ noteContent, editabl
 };
 
 const editorContentStyles = css({
+    w: 'full',
     overflowY: 'auto',
     scrollbar: 'hidden',
     flex: 1,
