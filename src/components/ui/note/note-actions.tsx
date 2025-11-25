@@ -18,6 +18,7 @@ export const NoteActions: FC<NoteActionsProps> = ({ id, pinned, selected, hoverS
         <>
             {(selected || hoverState) && (
                 <NoteActionBtn
+                    size={{ base: 'xs', md: 'md' }}
                     data-state-selected={selected}
                     className={selectBtnStyles}
                     onClick={(e) => {
@@ -32,6 +33,7 @@ export const NoteActions: FC<NoteActionsProps> = ({ id, pinned, selected, hoverS
             {hoverState && (
                 <Flex className={actionsCollectionStyles}>
                     <NoteActionBtn
+                        size={{ base: 'xs', md: 'md' }}
                         onClick={(e) => {
                             e.stopPropagation();
                             togglePinNote(id);
@@ -41,6 +43,7 @@ export const NoteActions: FC<NoteActionsProps> = ({ id, pinned, selected, hoverS
                         {pinned ? <PinOffIcon /> : <PinIcon />}
                     </NoteActionBtn>
                     <NoteActionBtn
+                        size={{ base: 'xs', md: 'md' }}
                         onClick={(e) => {
                             e.stopPropagation();
                             setDeleteNoteIds([id]);
@@ -56,19 +59,19 @@ export const NoteActions: FC<NoteActionsProps> = ({ id, pinned, selected, hoverS
 };
 
 const actionsCollectionStyles = css({
-    flexDir: 'column',
+    flexDir: { base: 'row', lg: 'column' },
     gap: '2',
     pos: 'absolute',
     pointerEvents: 'all',
-    bottom: '4',
-    right: '-6'
+    bottom: { base: '-4', lg: '4' },
+    right: { base: '-1', lg: '-6' }
 });
 
 const selectBtnStyles = css({
     pos: 'absolute',
     pointerEvents: 'all',
-    top: '4',
-    right: '-6',
+    top: { base: '-4', lg: '4' },
+    right: { base: '-1', lg: '-6' },
     visibility: 'visible',
     "&[data-state-selected='true']": {
         bgColor: 'emerald.7'
