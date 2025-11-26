@@ -1,47 +1,58 @@
 import Placeholder from '@tiptap/extension-placeholder';
-import { EditorContent, useEditor } from '@tiptap/react';
+import Underline from '@tiptap/extension-underline';
+import { Content, EditorContent, useEditor } from '@tiptap/react';
 import StarterKit from '@tiptap/starter-kit';
-import { FC } from 'react';
+import { FC, useEffect } from 'react';
 import { css } from 'styled-system/css';
+import { EditorToolbar } from './editor-toolbar';
 
 const extensions = [
     StarterKit,
     Placeholder.configure({
         placeholder: 'content'
-    })
+    }),
+    Underline
 ];
 
-export interface EditableContentProps {
-    noteContent: string;
-    onChange: (content: string) => void;
-}
+export type EditableContentProps =
+    | { editable: true; noteContent: Content; onChange: (content: string) => void }
+    | { editable: false; noteContent: Content; onChange?: never };
 
-export const EditableContent: FC<EditableContentProps> = ({ noteContent, onChange }) => {
+export const EditableContent: FC<EditableContentProps> = ({ noteContent, editable, onChange }) => {
     const editor = useEditor({
         extensions,
         content: noteContent,
+        editable,
         onUpdate(props) {
-            onChange(props.editor.getHTML());
+            onChange?.(props.editor.getHTML());
         }
     });
+
+    useEffect(() => {
+        if (editor && editor.getHTML() !== noteContent) {
+            editor.commands.setContent(noteContent, false);
+        }
+    }, [noteContent, editor]);
 
     return (
         <>
             <EditorContent
-                className={css({
-                    overflowY: 'auto',
-                    scrollbar: 'hidden',
-                    flex: 1,
-                    display: 'flex',
-                    flexDirection: 'column'
-                })}
+                className={editorContentStyles}
                 editor={editor}
                 placeholder="content"
                 defaultValue={'content'}
             />
-            {/*
-                <EditorToolbar editor={editor} />
-            */}
+            <EditorToolbar editor={editor} />
         </>
     );
 };
+
+const editorContentStyles = css({
+    w: 'full',
+    overflowY: 'auto',
+    scrollbar: 'hidden',
+    flex: 1,
+    display: 'flex',
+    flexDirection: 'column',
+    textStyle: 'noteContent'
+});

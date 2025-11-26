@@ -1,56 +1,70 @@
-import { useStoreActions } from '@/stores';
-import { DialogRootProps } from '@ark-ui/react';
+import { getDeleteNoteIds, useNoteStore, useNoteStoreActions } from '@/stores';
+import { DialogRootProps, Portal } from '@ark-ui/react';
 import { XIcon } from 'lucide-react';
-import { FC } from 'react';
+import { FC, useId } from 'react';
 import { Stack } from 'styled-system/jsx';
 import { Button } from '../button';
 import { Dialog } from '../dialog';
 import { IconButton } from '../icon-button';
 
-export interface DeleteNoteConfirmationProps extends DialogRootProps {
-    noteId: string;
-}
+export interface DeleteNoteConfirmationProps extends DialogRootProps {}
 
-export const DeleteNoteConfirmation: FC<DeleteNoteConfirmationProps> = ({
-    noteId,
-    children,
-    ...props
-}) => {
-    const { deleteNote } = useStoreActions();
+export const DeleteNoteConfirmation: FC<DeleteNoteConfirmationProps> = ({ ...props }) => {
+    const trigger = useId();
+    const { deleteNotes, deselectNotes, setDeleteNoteIds } = useNoteStoreActions();
+    const deleteNoteIds = useNoteStore(getDeleteNoteIds);
+
+    const handleDeleteNote = (noteIds: string[]) => {
+        deselectNotes(noteIds);
+        setDeleteNoteIds([]);
+        deleteNotes(noteIds);
+    };
 
     return (
-        <Dialog.Root {...props}>
-            <Dialog.Trigger asChild>{children}</Dialog.Trigger>
-            <Dialog.Backdrop />
-            <Dialog.Positioner>
-                <Dialog.Content>
-                    <Stack gap="8" p="6">
-                        <Stack gap="1">
-                            <Dialog.Title>delete note</Dialog.Title>
-                            <Dialog.Description>are you sure you wanna proceed?</Dialog.Description>
-                        </Stack>
-                        <Stack gap="3" direction="row" width="full">
-                            <Dialog.CloseTrigger asChild>
-                                <Button variant="outline" flexGrow={1}>
-                                    cancel
+        <Dialog.Root
+            ids={{ trigger }}
+            open={deleteNoteIds.length > 0}
+            onOpenChange={(e) => {
+                if (!e.open) {
+                    setDeleteNoteIds([]);
+                }
+            }}
+            {...props}
+        >
+            <Portal>
+                <Dialog.Backdrop />
+                <Dialog.Positioner>
+                    <Dialog.Content>
+                        <Stack gap="8" p="6">
+                            <Stack gap="1">
+                                <Dialog.Title>delete note</Dialog.Title>
+                                <Dialog.Description>
+                                    are you sure you wanna proceed?
+                                </Dialog.Description>
+                            </Stack>
+                            <Stack gap="3" direction="row" width="full">
+                                <Dialog.CloseTrigger asChild>
+                                    <Button variant="outline" flexGrow={1}>
+                                        cancel
+                                    </Button>
+                                </Dialog.CloseTrigger>
+                                <Button
+                                    colorPalette={'red'}
+                                    flexGrow={1}
+                                    onClick={() => handleDeleteNote(deleteNoteIds)}
+                                >
+                                    yeet
                                 </Button>
-                            </Dialog.CloseTrigger>
-                            <Button
-                                colorPalette={'red'}
-                                flexGrow={1}
-                                onClick={() => deleteNote(noteId)}
-                            >
-                                yeet
-                            </Button>
+                            </Stack>
                         </Stack>
-                    </Stack>
-                    <Dialog.CloseTrigger asChild position="absolute" top="2" right="2">
-                        <IconButton aria-label="Close Dialog" variant="ghost" size="sm">
-                            <XIcon />
-                        </IconButton>
-                    </Dialog.CloseTrigger>
-                </Dialog.Content>
-            </Dialog.Positioner>
+                        <Dialog.CloseTrigger asChild position="absolute" top="2" right="2">
+                            <IconButton aria-label="Close Dialog" variant="ghost" size="sm">
+                                <XIcon />
+                            </IconButton>
+                        </Dialog.CloseTrigger>
+                    </Dialog.Content>
+                </Dialog.Positioner>
+            </Portal>
         </Dialog.Root>
     );
 };

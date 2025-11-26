@@ -1,12 +1,12 @@
 import { useMemo } from 'react';
-import { useApplicationStoreSetter } from './setters';
-import { INoteActions, storeActions } from '../application';
+import { INoteActions, noteStoreActions } from '../application';
+import { useNoteStoreSetter } from './setters';
 
-export const useStoreActions = () => {
-    const set = useApplicationStoreSetter();
+export const useNoteStoreActions = () => {
+    const set = useNoteStoreSetter();
     return useMemo((): INoteActions => {
         return {
-            ...storeActions(set)
+            ...noteStoreActions(set)
         };
     }, [set]);
 };

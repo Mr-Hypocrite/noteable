@@ -8,6 +8,7 @@ export interface DesktopActionBarProps {}
 export const DesktopActionBar: FC<DesktopActionBarProps> = () => {
     return (
         <Flex
+            visibility={{ base: 'hidden', lg: 'visible' }}
             alignItems={'end'}
             direction={'column'}
             gap={'4'}

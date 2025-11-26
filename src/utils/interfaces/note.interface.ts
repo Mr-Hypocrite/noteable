@@ -1,3 +1,5 @@
+import { Content } from '@tiptap/react';
+
 export interface INoteGeneratedMeta {
     id: string;
     created_at: Date;
@@ -5,7 +7,7 @@ export interface INoteGeneratedMeta {
 
 export interface INote extends INoteGeneratedMeta {
     noteTitle: string;
-    noteContent: string;
+    noteContent: Content;
     pinned: boolean;
 }
 

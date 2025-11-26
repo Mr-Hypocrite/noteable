@@ -8,10 +8,19 @@ export interface INoteActions {
     deleteNotes: (ids: string[]) => void;
     togglePinNote: (id: string) => void;
     pinNotes: (ids: string[]) => void;
+
+    setSelectedNotes: (noteIds: string[]) => void;
+    deselectNotes: (noteIds: string[]) => void;
+    toggleSelectedNotes: (noteIds: string[]) => void;
+    setEditNoteId: (noteId: string) => void;
+    setDeleteNoteIds: (noteIds: string[]) => void;
 }
 
 export interface INoteState {
     notes: Record<string, INote>;
+    selectedNotes: string[];
+    deleteNoteIds: string[];
+    editNoteId: string;
 }
 
 export interface INoteStore extends INoteState {}

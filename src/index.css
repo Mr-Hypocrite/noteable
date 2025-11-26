@@ -1,5 +1,2 @@
 @layer reset, base, tokens, recipes, utilities;
 @import './tiptap.css';
-
-@layer base {
-}
