@@ -26,12 +26,13 @@ export const Home: FC<HomeProps> = () => {
                 <>
                     <Header />
                     {pinnedNotes.length > 0 ? (
-                        <Flex w={'full'} direction={'column'} gap={'2'} mb={'8'}>
+                        <Flex w={'full'} direction={'column'} mb={'8'}>
                             <Text
                                 as={'h3'}
-                                textAlign={{ base: 'center', lg: 'left' }}
+                                textAlign={{ base: 'left' }}
                                 fontWeight={'light'}
                                 size={'md'}
+                                mt={{ base: '4', md: 0 }}
                             >
                                 pinned notes
                             </Text>
@@ -39,12 +40,13 @@ export const Home: FC<HomeProps> = () => {
                         </Flex>
                     ) : null}
                     {notes.length > 0 ? (
-                        <Flex w={'full'} direction={'column'} gap={'2'} mb={'8'}>
+                        <Flex w={'full'} direction={'column'} mb={'8'}>
                             <Text
                                 as={'h3'}
-                                textAlign={{ base: 'center', lg: 'left' }}
+                                textAlign={{ base: 'left' }}
                                 fontWeight={'light'}
                                 size={'md'}
+                                mt={{ base: '4', md: 0 }}
                             >
                                 notes
                             </Text>
