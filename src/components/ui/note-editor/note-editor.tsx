@@ -71,7 +71,7 @@ export const NoteEditorDialog: FC<NoteEditorDialogProps> = () => {
                 <Dialog.Positioner>
                     <Dialog.Content
                         p={'4'}
-                        minW={'xl'}
+                        minW={{ base: '5/6', lg: 'xl' }}
                         maxW={'2xl'}
                         aspectRatio={'4/3'}
                         bgColor={'emerald.1'}
