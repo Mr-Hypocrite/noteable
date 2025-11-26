@@ -74,7 +74,7 @@ export const EditorToolbar: FC<EditorToolbarProps> = ({ editor }) => {
             <ToolbarButtonWrapper
                 toolTipContent={'horizontalrule'}
                 className={`${editor?.isActive('horizontalrule') ? 'active' : ''}`}
-                onClick={() => editor?.commands.setHorizontalRule}
+                onClick={() => editor?.commands.setHorizontalRule()}
             >
                 <MinusIcon />
             </ToolbarButtonWrapper>
